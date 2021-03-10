@@ -627,3 +627,35 @@ opacity:1;
                       font-size: 20px;}
                 }
               
+               
+                  @media only screen and (max-width: 1000px) {
+                    .pix{
+                      width:30px ;
+                      height: 30px;
+                      
+                     
+                  }
+                  .conta{
+                    position: relative;
+                    top: -2em;
+                    left: 3em;
+                    text-align: left;
+                  color: rgb(0, 81, 255);
+                  font-size: 14px;
+
+                  }
+                  #id{
+                    width: 300px;
+                    height: 320px;
+                  }
+                 
+                  }
+                  #pi3{
+                    position: relative;
+                    top: -4em;
+                  }
+                 
+                
+
+
+              

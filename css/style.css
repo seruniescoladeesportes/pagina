@@ -355,32 +355,13 @@ p {
   padding: 30px;
   border-radius: 5px;
   box-shadow: 5px 5px 15px 0px rgba(44,44,44,0.15);
-  background: linear-gradient(135deg, #0a287c, #077ece);
-}
-.citacao2 p {
-  font-size: 1.5em;
-  font-style: italic;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
-  color: white;
-}
-.citacao {
-  align-self: start;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 5px 5px 15px 0px rgba(44,44,44,0.15);
-  background: linear-gradient(135deg, #7c0a0a, #ce0707);
+  background: linear-gradient(135deg, #fdfdfd, #ebebeb);
+  width: 320px;
 }
 
-.citacao p {
-  font-size: 1.5em;
-  font-style: italic;
-  text-align: center;
-  max-width: 500px;
-  margin: 0 auto;
-  color: white;
-}
+
+
+
 .atributos{
  
     align-self: start;
@@ -405,9 +386,7 @@ p {
   padding: 15px;
 }
 
-.atributos li + li {
-  border-top: 2px solid #AF7BFB;
-}
+
 
 .footer p {
   color: white;
