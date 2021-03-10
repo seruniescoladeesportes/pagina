@@ -1,0 +1,40 @@
+    /* video scroll */
+    html, body {
+        height: 100%;
+      } body {
+        margin: 0px;
+        font-family: Roboto;
+        color: white;
+        user-select: none
+      } #headervideo {
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+        position: fixed;
+        display: none;
+        align-items: center;
+        justify-content: center;
+      } #headervideo > p {
+        cursor: pointer;
+        position: absolute;
+        z-index: 100;
+        top: 20px;
+        right: 20px;
+       padding: 10px;
+       color: rgb(255, 251, 0);
+       border: 1px solid rgb(255, 251, 0);
+        transition: all 0.2s ease;
+       
+      } #headervideo > p:hover {
+    background-color: rgb(3, 18, 68);
+    color: #fff;
+    border: 1px solid rgb(0, 204, 255);
+      }  
+       
+       #headervideo > iframe {
+        border-radius: 20px;
+        background: black;
+        transition: box-shadow 0.3s ease, transform 0.2s ease
+      } #headervideo > iframe:hover {
+        box-shadow: rgb(150,150,150) 5px 5px 20px
+      }

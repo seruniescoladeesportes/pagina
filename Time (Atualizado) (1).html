@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Relógio</title>
+        <meta charset=UTF-8>
+        <link rel=stylesheet href="https://fonts.googleapis.com/css?family=Roboto">
+    </head>
+    <style>
+        body {
+            
+            margin: 0px;
+            padding: 20px;
+            font-family: Roboto;
+            user-select: none;
+            -ms-user-select: none;
+            -moz-user-select: none;
+        } body > div {
+            width: min-content;
+            transform: scale(0.5);
+            margin: 0px auto;
+            padding: 20px;
+            border-radius: 40px;
+            box-shadow: rgb(0,0,0,0.3) 5px 5px 0px;
+        } #mens {
+            text-align: center;
+            text-shadow: rgb(0,0,0,0.2) 3px 3px 0px; }
+         
+            #mens > div {
+            transition: all 0.3s ease;
+            overflow: hidden;
+            height: 0px;
+        } #mens1 {
+            font-size: 32px;
+        } #mens2 {
+            font-size: 25px;
+        } body > div > div:nth-child(2) {
+            display: flex;
+        } .hora {
+            width: 140px;
+            height: 140px;
+            color: white;
+            margin: 5px;
+            padding: 0px;
+            border-radius: 20px;
+            font-size: 100px;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+            box-shadow: rgb(0,0,0,0.3) 4px 4px 0px;
+        } .hora > div {
+            height: 75px;
+            position: relative;
+            overflow: hidden;
+        } .hora > div > div {
+            width: 140px;
+            height: 140px;
+            position: absolute;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgb(6, 68, 104);
+        } .hora > div:nth-child(2) > div {
+            margin-top: -75px;
+        }
+    </style>
+    <body>
+        <div>
+            <div id=mens>
+                <div id=mens1></div>
+                <div id=mens2></div>
+            </div>
+            <div>
+                <div id=h class=hora>
+                    <div>
+                        <div style="transform: rotateX(0deg); transition: all 0.5s ease-in" id=h11></div>
+                        <div style="transform: rotateX(0deg); transition: all 0.5s ease-in" id=h12></div>
+                    </div>
+                    <div>
+                        <div style="background: rgb(6, 68, 104)" id=h21></div>
+                        <div style="background: rgb(6, 68, 104); transform: rotateX(90deg); transition: all 0.5s ease-out" id=h22></div>
+                    </div>
+                </div>
+                <div id=m class=hora>
+                    <div>
+                        <div style="transform: rotateX(0deg); transition: all 0.5s ease-in" id=m11></div>
+                        <div style="transform: rotateX(0deg); transition: all 0.5s ease-in" id=m12></div>
+                    </div>
+                    <div>
+                        <div style="background: rgb(6, 68, 104)" id=m21></div>
+                        <div style="background:rgb(6, 68, 104); transform: rotateX(90deg); transition: all 0.5s ease-out" id=m22></div>
+                    </div>
+                </div>
+                <div id=s class=hora>
+                    <div>
+                        <div style="transform: rotateX(0deg); transition: all 0.5s ease-in" id=s11></div>
+                        <div style="transform: rotateX(0deg); transition: all 0.5s ease-in" id=s12></div>
+                    </div>
+                    <div>
+                        <div style="background:rgb(6, 68, 104)" id=s21></div>
+                        <div style="background:rgb(6, 68, 104); transform: rotateX(90deg); transition: all 0.5s ease-out" id=s22></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        /*ABAIXO UMA LISTA COM VARIÁVEIS IMPORTANTES*/
+
+        let H = document.querySelectorAll("#h > div") //---> Divs da hora
+        let M = document.querySelectorAll("#m > div") //---> Divs do minuto
+        let S = document.querySelectorAll("#s > div") //---> Divs do segundo
+        let divMens = document.getElementById("mens") //---> Div da mensagem
+        let m1 = document.getElementById("mens1") //---> Div da primeira frase da mensagem
+        let m2 = document.getElementById("mens2") //---> Div da segunda frase da mensagem
+        let time = new Date() //---> Data
+        let diaSemana = time.getDay() //---> É um valor natural que vai desde 0 (Domingo) até 6 (Sábado)
+        let dia = time.getDate()
+        let mes = time.getMonth() //---> Varia de 0 (Janeiro) até 11 (Dezembro)!!!
+        let ano = time.getFullYear()
+        let date1 = moreOneDay(dia, mes, ano)
+        let dia2 = date1[0]
+        let mes2 = date1[1]
+        let ano2 = date1[2]
+        let hora = time.getHours()
+        let min = time.getMinutes()
+        let seg = time.getSeconds()
+        let mili = time.getMilliseconds()
+        let feriados = new Array([1], [], [], [21], [1], [], [], [], [7, 20], [12], [2, 15], [25, 31]) //---> Os feriados listados são, respectivamente: Confraternização Universal, Tiradentes, Dia do Trabalho, Dia da Independência, Revolução Farroupilha, Dia de Nossa Senhora Aparecida, Dia dos Finados, Proclamação da República, Natal, Ano-Novo
+        if(mes <= 4 || (mes == 5 && dia <= 24)) { //---> Se o dia atual for antes de 24 de junho, calcular Carnaval, Páscoa e Corpus Christi
+            CarnPascChr()
+        } let condFer = false //---> Variável que identifica se o dia de hoje é feriado (true) ou não (false)
+        let condFer2 = false //---> Variável que identifica se o dia de amanhã é feriado (true) ou não (false)
+        condFer = isFer(dia, mes) //---> Definir se hoje é feriado
+        condFer2 = isFer(dia2, mes2) //---> Definir se amanhã é feriado
+        let mensVetor = new Array(["Aberto agora", "Fecha às 23:00", "rgb(0,160,0)"], ["Fechado agora", "Abre às 14:00", "Amanhã é domingo!", "Hoje é domingo!", "Amanhã é feriado!", "Hoje é feriado!", "tomato"]) //---> Vetor com as mensagens
+        let verifHora = () => {} //---> Variável igual a uma função inicialmente vazia
+
+        /*Abaixo é definido no HTML o horário de quando a página foi carregada*/
+        addValor(document.querySelector("#h12"), hora)
+        addValor(document.querySelector("#h21"), hora)
+        addValor(document.querySelector("#m12"), min)
+        addValor(document.querySelector("#m21"), min)
+        addValor(document.querySelector("#s12"), seg)
+        addValor(document.querySelector("#s21"), seg)
+        
+        /*Esta função será ativada depois de 0,3 segundos que a página é carregada!!!*/
+        setTimeout(function() {
+            verifHora = () => { //---> A variável que era uma função vazia passa a ser uma função que verifica a hora.
+
+                if(hora == 0) { //---> Se começar um novo dia
+                    if(condFer == true) { //---> Se o novo dia é feriado
+                        if(m2.textContent !== "Hoje é feriado!") {
+                            changeMens2(5)
+                        }
+                    } else if(diaSemana == 0) { //---> Se o novo dia é domingo
+                        changeMens2(3)
+                    } else { //---> Se o novo dia não é feriado, nem domingo
+                        if(m2.textContent !== "Abre às 14:00") { //---> Se o dia de ontem não era nem feriado, nem domingo (dia comum)
+                            changeMens2(1)
+                        }
+                    }
+
+                    /*Nota-se que se o dia atual for feriado e domingo ao mesmo tempo, vai somente mostrar que hoje é feriado!*/
+                } else if(hora !== 0 && condFer == false && diaSemana > 0) { //---> Se for uma hora diferente e o dia atual não for feriado, nem domingo
+                    if(hora == 8) { //---> Se chegar 8 horas da manhã
+                        changeStatus(0, 1)
+                    } else if(hora == 22) { //---> Se chegar 22 horas
+                        if(condFer2 == true) { //---> Se o dia de amanhã for feriado
+                            changeStatus(1, 4)
+                        } else if(diaSemana == 6) { //---> Se hoje é sábado (logo amanhã é domingo)
+                            changeStatus(1, 2)
+                        } else { //---> Se amanhã não for feriado, nem domingo
+                            changeStatus(1, 1)
+                        }
+
+                        /*Nota-se que se o dia de amanhã for feriado e domingo ao mesmo tempo, vai somente mostrar que amanhã é feriado!*/
+                    }
+                }
+            }; m1.style.height = "40px"
+            m2.style.height = "25px"
+            
+            /*O CÓDIGO ABAIXO VERIFICA O HORÁRIO INICIAL*/
+
+            let newVetor
+            let numM
+            if(hora >= 14 && hora <= 23 && condFer == false && diaSemana > 0) { //---> Se o dia atual não for feriado, nem domingo, e a hora estiver entre 8 e 21 (ambos inclusive)
+                newVetor = m1Func(0)
+                numM = 1
+            } else { //---> Os casos excedentes: Se o dia atual não for feriado, nem domingo, mas a hora for menor que 8 ou maior que 21, OU o dia atual for feriado e/ou domingo
+                newVetor = m1Func(1)
+                if(condFer == true) { //---> Se hoje é feriado
+                    numM = 5
+                } else if(diaSemana == 0) { //---> Se hoje é domingo
+                    numM = 3
+                } else { //---> Se hoje não é feriado, nem domingo
+                    if(hora >= 23 && condFer2 == true) { //---> Se passou das 22 horas e amanhã é feriado
+                        numM = 4
+                    } else if(hora >= 23 && diaSemana == 6) { //---> Se passou das 22 horas e amanhã é domingo
+                        numM = 2
+                    } else { //---> Se for antes das 8 horas OU passou das 22 horas e amanhã não é feriado, nem domingo
+                        numM = 1
+                    }
+                }
+            } m2Func(newVetor, numM)
+        }, 300)
+
+        /*Abaixo, inicia uma função temporizadora que determina o horário*/
+        const inicio = 1000 - mili
+        setTimeout(function() {
+            mudarHora()
+            setInterval(function() {
+                mudarHora()
+            }, 1000)
+        }, inicio)
+
+        /*------------------------------------------------*/
+        /*ABAIXO UMA LISTA DE FUNÇÕES UTILIZADAS NO CÓDIGO*/
+
+        /*A FUNÇÃO ABAIXO É EXECUTADA A CADA UM SEGUNDO, E MUDA O HORÁRIO*/
+        function mudarHora() {
+            seg++
+            if(seg == 60) { //---> Se completou 60 segundos, adicionar um minuto
+                min++
+                seg = 0
+                if(min == 60) { //---> Se completou 60 minutos, adicionar uma hora
+                    min = 0
+                    hora++
+                    if(hora == 24) { //---> Se completou 24 horas, adicionar um dia
+                        hora = 0
+                        diaSemana = (diaSemana + 1) % 7 //---> Definir o novo dia da semana
+                        let newData = moreOneDay(dia, mes, ano) //---> Verifica o novo dia de hoje
+                        dia = newData[0]
+                        mes = newData[1]
+                        ano = newData[2]
+                        if(dia == 1 && mes == 0) { //---> Se começou um novo ano, definir os novos feriados
+                            CarnPascChr()
+                        } let newData2 = moreOneDay(dia2, mes2, ano2) //---> Verifica o novo dia de amanhã
+                        dia2 = newData2[0]
+                        mes2 = newData2[1]
+                        ano2 = newData2[2]
+                        condFer = condFer2 //---> A condição de feriado no dia de amanhã antes, agora é do dia de hoje
+                        condFer2 = isFer(dia2, mes2) //---> Como o dia de amanhã é uma data nova, verificar se é feriado
+                    } changeTime(H, "h", hora) //---> Animar as divs da hora
+                    verifHora() //---> Verificar a hora (se está aberto ou fechado agora)
+                } changeTime(M, "m", min) //---> Animar as divs de minuto
+            } changeTime(S, "s", seg) //---> Animar as divs de segundo
+        } /*A FUNÇÃO ABAIXO FAZ AS ANIMAÇÕES DAS DIVS QUANDO UMA ENTIDADE DO HORÁRIO (SEG., MIN. OU HORA) MUDA*/
+        function changeTime(divs, add, newValue) {
+            let divs1 = document.querySelectorAll("#" + add + " > div > div")
+            if(newValue < 10) {
+                newValue = "0" + newValue
+            } divs1[0].textContent = newValue
+            divs1[1].style.transform = "rotateX(90deg)"
+            divs1[1].style.background = "rgb(6, 68, 104)"
+            setTimeout(function() {
+                divs[0].removeChild(divs1[1])
+                let newDiv = document.createElement("div")
+                newDiv.style.transform = "rotateX(0deg)"
+                newDiv.style.transition = "all 0.5s ease-in"
+                divs[0].insertBefore(newDiv, divs1[0])
+                divs1 = document.querySelectorAll("#" + add + " > div > div")
+                divs1[3].textContent = newValue
+                divs1[3].style.transform = "rotateX(0deg)"
+                divs1[3].style.background = "rgb(6, 68, 104)"
+                setTimeout(function() {
+                    divs[1].removeChild(divs1[2])
+                    let newDiv = document.createElement("div")
+                    newDiv.textContent = newValue
+                    newDiv.style.background = "rgb(6, 68, 104)"
+                    newDiv.style.transform = "rotateX(90deg)"
+                    newDiv.style.transition = "all 0.5s ease-out"
+                    divs[1].appendChild(newDiv)
+                }, 500)
+            }, 500)
+        } /*A FUNÇÃO ABAIXO CRIA UMA ANIMAÇÃO QUANDO MUDA DE "FECHADO AGORA" PARA "ABERTO AGORA", OU VICE-VERSA*/
+        function changeStatus(numMens1, numMens2) {
+            m1.style.height = "0px"
+            setTimeout(function() {
+                const vetor = m1Func(numMens1)
+                m1.style.height = "40px"
+                m2.style.height = "0px"
+                setTimeout(function() {
+                    m2Func(vetor, numMens2)
+                    m2.style.height = "25px"
+                }, 300)
+            }, 300)
+        } /*ABAIXO, ANIMA SOMENTE A SEGUNDA FRASE QUANDO A MENSAGEM ESTÁ "FECHADO AGORA"*/
+        /*Obs.: esta função é ativada quando passa de feriado pra domingo (ou vice-versa), domingo pra dia comum (ou vice-versa) ou de feriado pra dia comum (ou vice-versa)*/
+        function changeMens2(valor) {
+            m2.style.height = "0px"
+            setTimeout(function() {
+                m2Func(mensVetor[1], valor)
+                m2.style.height = "25px"
+            }, 300)
+        } /*FUNÇÃO QUE MUDA A PRIMEIRA FRASE DA MENSAGEM*/
+        function m1Func(num1M1) {
+            const vetor = mensVetor[num1M1]
+            divMens.style.color = vetor[vetor.length - 1]
+            m1.innerHTML = "<b>" + vetor[0] + "</b>"
+            return vetor
+        } /*FUNÇÃO QUE MUDA A SEGUNDA FRASE DA MENSAGEM*/
+        function m2Func(vetor, num2M2) {
+            m2.textContent = vetor[num2M2]
+        } /*FUNÇÃO QUE USA UMA EQUAÇÃO PRA DEFINIR QUANTOS DIAS TEM UM DETERMINADO MÊS (LEVA EM CONTA ANOS BISSEXTOS)*/
+        function diasMes(numMes, year) {
+            const addYear = piso(year/4) - piso((year - 1)/4) - piso(year/100) + piso((year - 1)/100) + piso(year/400) - piso((year - 1)/400)
+            /*Obs.: a constante acima é 0 quando é ano comum, e 1 quando é ano bissexto*/
+            return (30 + ((numMes + 1 - Math.floor(numMes/7)) % 2) + (addYear - 2)*Math.pow(0, Math.abs(numMes - 1)))
+        } /*FUNÇÃO QUE CALCULA UM NOVO DIA*/
+        function moreOneDay(dia, mes, ano) {
+            dia++
+            if(dia > diasMes(mes, ano)) {
+                dia = 1
+                mes++
+                if(mes == 12) {
+                    mes = 0
+                    ano++
+                }
+            } return [dia, mes, ano]
+        } /*FUNÇÃO QUE VERIFICA SE AMANHÃ É FERIADO*/
+        function isFer(dia, mes) {
+            for(let a = 0; a < feriados[mes].length; a++) {
+                if(feriados[mes][a] == dia) {
+                    if(mes == 1 || mes == 2 || mes == 5) {
+                        feriados[mes] = []
+                    } if((mes == 3 || mes == 4) && a == 1) {
+                        feriados[mes].splice(1, 1)
+                    } return true
+                }
+            } return false
+        } /*FUNÇÃO QUE CALCULA O DIA DA PÁSCOA*/
+        function dataPascoa(ANO) {
+            let a = ANO % 19,
+            b = piso(ANO/100),
+            c = ANO % 100,
+            d = piso(b/4),
+            e = b % 4,
+            f = piso((b + 8)/25),
+            g = piso((b - f + 1)/3),
+            h = (19*a + b - d - g + 15) % 30,
+            i = piso(c/4),
+            k = c % 4,
+            L = (32 + 2*e + 2*i - h - k) % 7,
+            m = piso((a + 11*h + 22*L)/451),
+            MES = piso((h + L - 7*m + 114)/31) - 1,
+            DIA = 1 + (h + L - 7*m + 114) % 31
+            return [DIA, MES]
+        } /*FUNÇÃO QUE CALCULA OS DIAS DE CARNAVAL E CORPUS CHRISTI BASEADO NO DIA DA PÁSCOA*/
+        /*Obs.: o feriado de Carnaval ocorre 47 dias antes do dia da Páscoa, e o Corpus Christi 60 dias*/
+        function CarnPascChr() {
+            let pascoa = dataPascoa(ano)
+            let crvl = new Array(pascoa[0], pascoa[1])
+            let chr = new Array(pascoa[0], pascoa[1])
+            while(crvl[0] <= 47) {
+                crvl[1]--
+                crvl[0] += diasMes(crvl[1], ano)
+            } crvl[0] -= 47
+            chr[0] += 60
+            while(chr[0] > diasMes(chr[1], ano)) {
+                chr[0] -= diasMes(chr[1], ano)
+                chr[1]++
+            } if(crvl[1] > mes || (crvl[1] == mes && crvl[0] >= dia)) { //---> Se o dia de Carnaval for agora ou depois do dia de hoje
+                feriados[crvl[1]][0] = crvl[0]
+            } if(pascoa[1] > mes || (pascoa[1] == mes && pascoa[0] >= dia)) { //---> Se o dia da Páscoa for agora ou depois do dia de hoje
+                if(pascoa[0] !== 21 || pascoa[1] !== 3) { //---> Se o feriado da Páscoa não coincidir com o feriado de Tiradentes!
+                    feriados[pascoa[1]][feriados[pascoa[1]].length] = pascoa[0]
+                }
+            } if(chr[1] > mes || (chr[1] == mes && chr[0] >= dia)) { //---> Se o dia de Corpus Christi for agora ou depois do dia de hoje
+                feriados[chr[1]][0] = chr[0]
+            }
+        } /*FUNÇÃO QUE ADICIONA UM ZERO ANTES DO NÚMERO SE ELE FOR MENOR QUE 10*/
+        function addValor(element, newValue) {
+            if(newValue < 10) {
+                newValue = "0" + newValue
+            } element.textContent = newValue
+        } /*FUNÇÃO QUE RETORNA O PISO DO VALOR DE ENTRADA*/
+        /*Definição da função piso: Se x ∈ [n, n + 1], tal que n ∈ Z, então Math.floor(x) = ⌊ x ⌋ = n*/
+        function piso(valor) {
+            return Math.floor(valor)
+        }
+    </script>
+</html>

@@ -1,0 +1,275 @@
+
+
+@media only screen and (min-width: 600px) {
+  .fots1{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    left: 32em;
+    top: 80px;
+}
+.fots2{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    left: 48em;
+    top: -5em;
+}
+.fots3{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    left: 63em;
+    top: -13em;
+}
+.bem{
+  font-family: 'Roboto', sans-serif; 
+  font-size: 60px;
+  color: #011097;
+  text-shadow: 3px 5px 5px rgba(0, 0, 0, 0.808);
+  margin: 90px 0px 50px 480px;
+}
+
+   
+  
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .fots1{
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      left: 2em;
+      top: 10em;
+  }
+  .fots2{
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      left: 11em;
+      top:3em ;
+  }
+  .fots3{
+      position: relative;
+      width: 100px;
+      height: 100px;
+      border-radius: 100%;
+      left: 20em;
+      top: -2em ;
+  }
+  .bem{
+    font-family: 'Roboto', sans-serif; 
+    font-size: 40px;
+    color: #011097;
+    text-shadow: 3px 5px 5px rgba(0, 0, 0, 0.808);
+    margin: 90px 0px 50px 0px;
+    text-align: center;
+}
+
+  
+    }
+
+
+
+
+
+
+@media only screen and (min-width: 600px) {
+    .contato{
+        font-family: 'Roboto', sans-serif;
+        font-weight: 900;
+      background-color: #f1da03;
+      border-radius: 10px;
+      border: none;
+      color: #020202;
+      width: 150px;
+      height: 40px;
+      margin-left: 680px;
+     
+    }
+    }
+  
+    @media only screen and (max-width: 1000px) {
+      .contato{
+        font-weight: 700;
+        background-color: #f1da03;
+        border-radius: 10px;
+        border: none;
+        color: #000000;
+        width: 150px;
+        height: 40px;
+        margin-left: 10em;
+      }
+    
+      }
+
+
+      @media only screen and (min-width: 600px) {
+        .colar{
+          border: none;
+          width: 18em;
+          margin-left: 45em;
+          margin-top: -11em;
+          }
+          .copiar{
+            width: 18em;
+            background-color: #06599c;
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            margin-left: 45em;
+          
+          }
+          .fotos{
+            width: 50PX;
+          }
+          
+        }
+      
+        @media only screen and (max-width: 1000px) {
+          .colar{
+            border: none;
+            width: 18em;
+            margin-left: 6em;
+            margin-top: 0em;
+            }
+            .copiar{
+              width: 18em;
+              background-color: #06599c;
+              border: none;
+              border-radius: 10px;
+              color: #ffffff;
+              margin-left: 6em;
+            
+            }
+            .fotos{
+              width: 50PX;
+            }
+            
+        
+          }
+          @media only screen and (min-width: 600px) {
+  .serunibot{
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: none;
+    color: #000000;
+    width: 150px;
+    height: 40px;
+    margin-left: 60px;
+  }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .serunibot{
+      background-color: #ffffff;
+      border-radius: 10px;
+      border: none;
+      color: #000000;
+      width: 150px;
+      height: 40px;
+      margin-left: 10px;
+    }
+    }
+.footer {
+  position: relative;
+  grid-area: footer;
+  background: linear-gradient(135deg, #016f9b, #ceb901);
+  top: 10em;
+  text-align: justify;
+  font-size: 17px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 400;
+}
+.footer p {
+  color: white;
+  text-align: center;
+  padding: 30px;
+
+
+}
+.grafico{
+  position: relative;
+  width:200em ;
+  height:300em ;
+
+}
+/* segunda pagina */
+/* ______--------------________------------__________---------________--------__________---------_________-------________-------__________----- */
+
+
+@media only screen and (min-width: 600px) {
+ .fotos12{
+   
+  
+   width:340px ;
+   height:340px ;
+   border-radius: 10px;
+   
+ }
+ 
+ .primeira{
+  position: relative;
+  top: -18em;
+  left: 25em;
+  width: 800px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+text-align: justify;
+
+
+  }
+  .fundo1{
+    color: #0755bb;
+  
+    margin-top: 20px;
+    width: 1200px;
+    height: 340px;
+    margin-left: 100px;
+    border-radius: 10px;
+    margin-bottom: 40px;
+
+  }
+}
+  @media only screen and (max-width: 1000px) {
+    .fotos12{
+   
+  
+      width:240px ;
+      height:240px ;
+      border-radius: 10px;
+      
+    }
+    
+    .primeira{
+   
+     width: 360px;
+     padding: 5px;
+  
+     font-family: Arial, Helvetica, sans-serif;
+     font-size: 15px;
+   text-align: justify;
+   
+   
+     }
+     .fundo1{
+       color: #0755bb;
+   
+       margin-top: 60px;
+     margin-left:  10px;
+       width: 370px;
+       height: 575px;
+      padding: 10px;
+       border-radius: 10px;
+       margin-bottom: -40px;
+       box-shadow: 5px 10px 5px rgba(0, 0, 0, 0.212);
+     }
+
+
+  }
+ 
