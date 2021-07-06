@@ -606,6 +606,10 @@ opacity:1;
                 margin-left: 1em;
                 text-align: justify;
               }
+
+              .desaparece{
+                display: none;
+              }
               }
 
           
