@@ -438,6 +438,14 @@ opacity:1;
                                 margin-left: 0em;
                                 top: 0em;
                                 border-radius: 10px;
+                               }
+                                .fb-post7{
+                                  position: relative;
+                                  left: 10em;
+                                  width: 300px;
+                                  margin-left: 0em;
+                                  top: 11em;
+                                  border-radius: 10px;
                                  /* margin-bottom: -45em; */
                                    }
 /* 
@@ -543,6 +551,17 @@ opacity:1;
              bottom: -100px;
         
             }
+            .biografia7{
+              position: relative;
+              font-size: 15px;
+             text-align: justify;
+             width: 500px;
+             top: -12em;
+             left: 35em;
+
+           bottom: -100px;
+      
+          }
           }
               @media only screen and (max-width: 1000px) {
               
